@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.navigators {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
