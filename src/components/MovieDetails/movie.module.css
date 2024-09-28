@@ -1,0 +1,52 @@
+.movieContainer {
+  position: relative;
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  z-index: 1; /* Ensure content is above the overlay */
+  gap: 30px;
+}
+
+/* Overlay to darken background */
+.movieContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black to darken */
+  z-index: -1; /* Keep the overlay behind content */
+}
+
+/* Poster image */
+.poster {
+  z-index: 2; /* Ensure poster stays above the overlay */
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6); /* Optional: Add shadow for emphasis */
+}
+
+/* Movie details */
+.movieDetails {
+  margin-top: 20px;
+  z-index: 2; /* Ensure text stays above the overlay */
+  max-width: 50%;
+}
+
+.closeIcon {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+  z-index: 2; /* Ensure icon stays above the overlay */
+  filter: invert();
+  opacity: 0.7;
+}
+
+.closeIcon:hover {
+  opacity: 1;
+}

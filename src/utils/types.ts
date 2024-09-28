@@ -22,7 +22,7 @@ export type Genre = "upcoming" | "popular" | "top_rated";
 // movie details
 type ProductionCompany = {
   id: number;
-  logo_path: string;
+  logo_path: string | null;
   name: string;
   origin_country: string;
 };
@@ -43,7 +43,41 @@ type Type = {
   name: string;
 };
 
-export type MovieDetails = {
+type Cast = {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string | null;
+  popularity: number;
+  profile_path: string | null;
+};
+
+type Crew = {
+  adult: boolean;
+  credit_id: string;
+  department: string;
+  job: string;
+  id: number;
+  gender: number;
+  known_for_department: string;
+  name: string;
+  original_name: string | null;
+  popularity: number;
+  profile_path: string | null;
+};
+
+type Credits = {
+  cast: Cast[];
+  crew: Crew[];
+};
+
+export type MovieDetailsType = {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: null;
@@ -69,4 +103,5 @@ export type MovieDetails = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits: Credits;
 };
