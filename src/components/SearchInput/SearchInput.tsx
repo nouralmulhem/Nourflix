@@ -1,14 +1,17 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { KeyboardEvent } from "react";
 import styles from "./search.module.css";
+import { useQueryStore } from "@/store/query";
+import { usePageStore } from "@/store/page";
 
 export default function SearchInput() {
-  const router = useRouter();
+  const setQuery = useQueryStore((state) => state.setQuery);
+  const setPage = usePageStore((state) => state.setPage);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      router.push(`/search/${event.currentTarget.value}`);
+      setQuery(event.currentTarget.value);
+      setPage(1);
     }
   };
 

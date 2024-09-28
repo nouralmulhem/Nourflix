@@ -1,9 +1,15 @@
 .footer {
   display: flex;
   gap: 24px;
-  padding: 20px;
+  padding: 5px;
   justify-content: center;
   flex-wrap: wrap;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: var(--background);
+  border-top: 1px solid var(--gray-alpha-200);
+  z-index: 1000;
 }
 
 .footer a {

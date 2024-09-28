@@ -1,10 +1,85 @@
-/* .ctas {
+.movieGrid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+  gap: 20px; /* Adjusts space between the grid items */
+}
+
+.movieItem {
   display: flex;
-  gap: 16px;
-} */
+  flex-direction: column;
+  align-items: center; /* Centers the content in each item */
+  padding: 10px;
+  border-radius: 8px; /* Optional: round the corners */
+  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Optional: add shadow */
+  cursor: pointer;
+}
+
+.ctas {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.ctas button {
+  appearance: none;
+  border-radius: 128px;
+  height: 48px;
+  padding: 0 20px;
+  border: none;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.ctas button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  min-width: 180px;
+}
+
+button.primary {
+  background: var(--foreground);
+  color: var(--background);
+  gap: 8px;
+}
+
+button.secondary {
+  border-color: var(--gray-alpha-200);
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  button.primary:hover {
+    background: var(--button-primary-hover);
+    border-color: transparent;
+  }
+
+  button.secondary:hover {
+    background: var(--button-secondary-hover);
+    border-color: transparent;
+  }
+}
 
 @media (max-width: 600px) {
-  /* .ctas {
-    flex-direction: column;
-  } */
+  .ctas button {
+    font-size: 14px;
+    height: 40px;
+    padding: 0 16px;
+  }
+
+  .movieGrid {
+    grid-template-columns: repeat(1, 1fr); /* Creates 4 equal columns */
+  }
+
+  .ctas button {
+    min-width: 140px;
+  }
 }

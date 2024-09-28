@@ -16,4 +16,27 @@
   display: flex;
   gap: 15px;
   align-items: center;
+  cursor: pointer;
+}
+
+.genre {
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.genre h4.selected {
+  color: tomato;
+}
+
+@media (max-width: 600px) {
+  .home,
+  .genre {
+    display: none;
+  }
+
+  .navigators {
+    margin: auto;
+  }
 }
