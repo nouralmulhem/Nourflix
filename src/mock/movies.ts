@@ -1,4 +1,4 @@
-export const data = [
+export const mock_movies = [
   {
     adult: false,
     backdrop_path: "/Asg2UUwipAdE87MxtJy7SQo08XI.jpg",

@@ -1,8 +1,14 @@
+.container {
+  width: 100%;
+  padding: 30px;
+}
+
 .movieGrid {
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
   gap: 20px; /* Adjusts space between the grid items */
+  width: 100%;
 }
 
 .movieItem {
@@ -13,6 +19,7 @@
   border-radius: 8px; /* Optional: round the corners */
   box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Optional: add shadow */
   cursor: pointer;
+  width: 100%;
 }
 
 .ctas {
@@ -37,12 +44,12 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: 500;
+  min-width: 180px;
 }
 
 .ctas button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
-  min-width: 180px;
 }
 
 button.primary {
