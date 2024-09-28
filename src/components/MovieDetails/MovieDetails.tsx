@@ -1,15 +1,19 @@
+"use client";
+
 import { mock_movie } from "@/mock/movie";
 import { getMovieById } from "@/services/getMovieById";
 import { MovieDetailsType } from "@/utils/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./movie.module.css";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function MovieDetails({ id }: { id: string }) {
   const [movie, setMovie] = useState<MovieDetailsType | undefined>(undefined);
   const [failure, setFailure] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const router = useRouter();
 
   useEffect(() => {
     setLoading(true);
@@ -43,9 +47,13 @@ export default function MovieDetails({ id }: { id: string }) {
   const backdropUrl = `${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.backdrop_path}`;
   const posterUrl = `${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`;
 
+  const handleBackClick = () => {
+    router.back();
+  };
+
   return (
     <>
-      <Link href={"/"}>
+      <div onClick={handleBackClick}>
         <Image
           className={styles.closeIcon}
           src={"/close-option.png"}
@@ -53,7 +61,7 @@ export default function MovieDetails({ id }: { id: string }) {
           width={50}
           height={50}
         />
-      </Link>
+      </div>
 
       <div
         className={styles.movieContainer}

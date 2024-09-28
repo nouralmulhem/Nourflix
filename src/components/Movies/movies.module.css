@@ -57,6 +57,26 @@ button.secondary {
   border-color: var(--gray-alpha-200);
 }
 
+.heart {
+  filter: invert();
+  cursor: pointer;
+}
+
+.favorite {
+  filter: none;
+}
+
+.overview {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info {
+  text-align: center;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   button.primary:hover {
