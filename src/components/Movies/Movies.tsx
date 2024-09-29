@@ -6,12 +6,18 @@ import { useRouter } from "next/navigation";
 import { usePageStore } from "@/store";
 import { useEffect, useState } from "react";
 import { toggleFavorite } from "@/utils/toggleFavorite";
+import { useNotificationStore } from "@/store/notification";
 
 export default function Movies({ movies }: { movies: Movie[] }) {
   const setPage = usePageStore((state) => state.setPage);
   const page = usePageStore((state) => state.page);
 
   const router = useRouter();
+
+  const handleAddNotification = (errMsg: string) => {
+    const { addNotification } = useNotificationStore.getState();
+    addNotification(errMsg, "error");
+  };
 
   const handleClick = (id: number) => {
     router.push(`/movie/${id}`);
@@ -50,6 +56,11 @@ export default function Movies({ movies }: { movies: Movie[] }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleFavorite(favorites, movie, setFavorites);
+                    handleAddNotification(
+                      isFavorite
+                        ? "Removed from Favorites"
+                        : "Added to Favorites"
+                    );
                   }}
                 >
                   <Image

@@ -1,0 +1,23 @@
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 30px;
+  opacity: 0.5;
+  margin-top: 200px;
+}
+
+.emptyState h2 {
+  font-size: 24px;
+}
+
+.image {
+  object-fit: contain;
+}
+
+@media (prefers-color-scheme: dark) {
+  .image {
+    filter: invert();
+  }
+}

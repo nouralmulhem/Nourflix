@@ -6,8 +6,10 @@ import Image from "next/image";
 import { Movie } from "@/utils/types"; // Assuming you have a Movie type definition
 import { useRouter } from "next/navigation"; // For navigating to individual movie pages
 import { toggleFavorite } from "@/utils/toggleFavorite";
+import NotificationContainer from "@/components/Notification/NotificationContainer";
+import { useNotificationStore } from "@/store/notification";
 
-export default function page() {
+export default function Page() {
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
   const router = useRouter();
 
@@ -27,6 +29,11 @@ export default function page() {
     router.back();
   };
 
+  const handleAddNotification = (title: string) => {
+    const { addNotification } = useNotificationStore.getState();
+    addNotification(`${title} has been removed from favorites`, "success");
+  };
+
   return (
     <>
       <div onClick={handleBackClick}>
@@ -38,6 +45,8 @@ export default function page() {
           height={50}
         />
       </div>
+      <NotificationContainer />
+
       <div className={styles.favoriteMoviesContainer}>
         <p className={styles.pageTitle}>Your Favorite Movies</p>
 
@@ -65,6 +74,7 @@ export default function page() {
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleFavorite(favoriteMovies, movie, setFavoriteMovies);
+                    handleAddNotification(movie.title);
                   }}
                   className={styles.favoriteIcon}
                 >

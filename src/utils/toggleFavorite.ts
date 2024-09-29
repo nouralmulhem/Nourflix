@@ -1,5 +1,7 @@
 import { Movie } from "./types";
 
+// we also can store this list in zustand store and that will be efficient
+// but for the sake of change, we will use local storage
 export const toggleFavorite = (
   favorites: Movie[],
   movie: Movie,
