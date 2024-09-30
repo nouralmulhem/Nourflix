@@ -8,11 +8,12 @@ export default function Footer() {
         href="https://www.linkedin.com/in/nour-almulhem-1817251b0/"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Visit my LinkedIn profile"
       >
         <Image
-          aria-hidden
+          aria-hidden="true"
           src="/linkedin.png"
-          alt="Linkedin icon"
+          alt=""
           width={16}
           height={16}
         />
@@ -22,11 +23,12 @@ export default function Footer() {
         href="https://github.com/nouralmulhem"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Visit my GitHub profile"
       >
         <Image
-          aria-hidden
+          aria-hidden="true"
           src="/github.png"
-          alt="GitHub icon"
+          alt=""
           width={16}
           height={16}
         />

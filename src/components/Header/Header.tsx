@@ -33,13 +33,14 @@ export default function Header() {
 
   const renderGenres = () => {
     return Object.keys(genreMap).map((key) => {
-      const typedKey = key as Genre; // Casting to the defined genre type
+      const typedKey = key as Genre;
 
       return (
         <h4
           key={typedKey}
           className={isSelected(typedKey)}
           onClick={() => handleClicked(typedKey)}
+          aria-label={`View ${genreMap[typedKey]} movies`}
         >
           {genreMap[typedKey]}
         </h4>
@@ -48,19 +49,21 @@ export default function Header() {
   };
 
   return (
-    <div className={styles.container}>
+    <header className={styles.container}>
       <div className={styles.home}>
-        <Image src="/popcorn.png" alt="Logo" width={50} height={50} />
+        <Image src="/popcorn.png" alt="Nourflix logo" width={50} height={50} />
         <h2>Nourflix</h2>
       </div>
 
-      <div className={styles.navigators}>
+      <nav className={styles.navigators} aria-label="Main navigation">
         <div className={styles.genre}>{renderGenres()}</div>
 
-        <Link href={"/favorite"}>Favorite List →</Link>
+        <Link href="/favorite" aria-label="View your favorite movies">
+          Favorite List →
+        </Link>
 
-        <SearchInput />
-      </div>
-    </div>
+        <SearchInput aria-label="Search for movies" />
+      </nav>
+    </header>
   );
 }

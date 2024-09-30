@@ -12,14 +12,12 @@ export default function CloseIcon() {
   };
 
   return (
-    <div onClick={handleBackClick}>
-      <Image
-        className={styles.closeIcon}
-        src={"/close-option.png"}
-        alt={"close-icon"}
-        width={50}
-        height={50}
-      />
-    </div>
+    <button
+      onClick={handleBackClick}
+      className={styles.closeIcon}
+      aria-label="Go back to the previous page"
+    >
+      <Image src="/close-option.png" alt="Close icon" width={50} height={50} />
+    </button>
   );
 }

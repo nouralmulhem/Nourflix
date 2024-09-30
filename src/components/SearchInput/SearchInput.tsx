@@ -15,10 +15,14 @@ export default function SearchInput() {
   };
 
   return (
-    <input
-      placeholder="Search ..."
-      onKeyDown={handleKeyDown}
-      className={styles.input}
-    />
+    <form role="search" onSubmit={(e) => e.preventDefault()}>
+      <input
+        id="search-input"
+        placeholder="Search ..."
+        onKeyDown={handleKeyDown}
+        className={styles.input}
+        aria-label="Search movies"
+      />
+    </form>
   );
 }

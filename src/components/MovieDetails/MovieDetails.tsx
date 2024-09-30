@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./movie.module.css";
+import React from "react";
 
 // types
 import { MovieDetailsType } from "@/utils/types";
@@ -19,7 +20,7 @@ export default function MovieDetails(props: MovieDetailsProps) {
     return (
       <>
         <CloseIcon />
-        <EmptyState message="Movie not Found." />
+        <EmptyState message="Movie not found." />
       </>
     );
   }
@@ -30,7 +31,8 @@ export default function MovieDetails(props: MovieDetailsProps) {
   return (
     <>
       <CloseIcon />
-      <div
+
+      <article
         className={styles.movieContainer}
         style={{
           backgroundImage: `url(${backdropUrl})`, // Set backdrop image via inline style
@@ -39,26 +41,40 @@ export default function MovieDetails(props: MovieDetailsProps) {
         <Image
           className={styles.poster}
           src={posterUrl}
-          alt={`${movie.title} poster`}
+          alt={`Poster of ${movie.title}`}
           width={400}
           height={600}
         />
 
-        <div className={styles.movieDetails}>
+        <section className={styles.movieDetails}>
           <h1>{movie.title}</h1>
-          <p>{movie.release_date}</p>
-          <p>Rating: {movie.vote_average}</p>
-          <p>Synopsis: {movie.overview}</p>
-          <p>Genre: {movie.genres.map((e) => e.name + ", ")}</p>
-          <p>RunTime: {movie.runtime}</p>
-          <p>Cast: {movie.credits.cast.map((e) => e.name + ", ")}</p>
           <p>
-            Director:{" "}
+            <strong>Release Date:</strong> {movie.release_date}
+          </p>
+          <p>
+            <strong>Rating:</strong> {movie.vote_average}
+          </p>
+          <p>
+            <strong>Synopsis:</strong> {movie.overview}
+          </p>
+          <p>
+            <strong>Genres:</strong>
+            {movie.genres.map((e) => e.name).join(", ")}
+          </p>
+          <p>
+            <strong>Runtime:</strong> {movie.runtime} minutes
+          </p>
+          <p>
+            <strong>Cast:</strong>
+            {movie.credits.cast.map((e) => e.name).join(", ")}
+          </p>
+          <p>
+            <strong>Director:</strong>
             {movie.credits?.crew?.filter((e) => e.job === "Director")[0]
               ?.name || "Unknown"}
           </p>
-        </div>
-      </div>
+        </section>
+      </article>
     </>
   );
 }

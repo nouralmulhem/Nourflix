@@ -12,6 +12,8 @@ export default function PageControllers() {
         className={styles.secondary}
         onClick={() => setPage(page - 1)}
         disabled={page === 1}
+        aria-disabled={page === 1}
+        aria-label="Go to the previous page"
       >
         Previous Page
       </button>
@@ -19,6 +21,8 @@ export default function PageControllers() {
         className={styles.primary}
         onClick={() => setPage(page + 1)}
         disabled={page === 20}
+        aria-disabled={page === 20}
+        aria-label="Go to the next page"
       >
         Next Page
       </button>

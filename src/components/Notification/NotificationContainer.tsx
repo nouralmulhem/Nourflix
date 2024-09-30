@@ -7,7 +7,7 @@ export default function NotificationContainer() {
   const { notifications, removeNotification } = useNotificationStore();
 
   return (
-    <div>
+    <div aria-live="polite">
       {notifications.map((notification) => (
         <Notification
           key={notification.id}

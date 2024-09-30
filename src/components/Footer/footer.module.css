@@ -18,10 +18,6 @@
   gap: 8px;
 }
 
-.footer img {
-  flex-shrink: 0;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .footer a:hover {
     text-decoration: underline;

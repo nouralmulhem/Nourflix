@@ -48,9 +48,9 @@ export default function Dashboard() {
       setLoading(true);
 
       try {
-        const response = await getMovies<Movie[]>(page, query, genre);
-        setMovies(response);
-        // setMovies(mock_movies);
+        // const response = await getMovies<Movie[]>(page, query, genre);
+        // setMovies(response);
+        setMovies(mock_movies);
       } catch {
         setFailure(true);
         handleAddNotification();

@@ -12,6 +12,7 @@ import { toggleFavorite } from "@/utils/toggleFavorite";
 import { useNotificationStore } from "@/store";
 import PageControllers from "../PageControllers/PageControllers";
 import { useRouter } from "next/navigation";
+import React from "react";
 
 type MoviesProps = {
   movies: Movie[];
@@ -42,25 +43,32 @@ export default function Movies(props: MoviesProps) {
 
   return (
     <>
-      <div className={styles.movieGrid}>
+      <section className={styles.movieGrid} role="list">
         {movies.map((movie) => {
           const isFavorite = favorites.some(
             (favMovie) => favMovie.id === movie.id
           );
 
           return (
-            <div
+            <article
               key={movie.id}
               className={styles.movieItem}
+              role="listitem"
               onClick={() => handleMovieClick(movie.id)}
+              aria-label={`View details of ${movie.title}`}
             >
               <div className={styles.overview}>
                 <div className={styles.info}>
-                  <div>{movie.title}</div>
-                  <div>{movie.release_date}</div>
-                  <div>{movie.vote_average}</div>
+                  <h2>{movie.title}</h2>
+                  <p>{movie.release_date}</p>
+                  <p>Rating: {movie.vote_average}</p>
                 </div>
                 <div
+                  aria-label={
+                    isFavorite
+                      ? `Remove ${movie.title} from favorites`
+                      : `Add ${movie.title} to favorites`
+                  }
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleFavorite(favorites, movie, setFavorites);
@@ -76,7 +84,7 @@ export default function Movies(props: MoviesProps) {
                       isFavorite ? ` ${styles.favorite}` : ""
                     }`}
                     src={isFavorite ? "/heart-full.png" : "/heart-empty.png"}
-                    alt={`${movie.title} fav`}
+                    alt={`Favorite icon for ${movie.title}`}
                     width={20}
                     height={20}
                   />
@@ -84,14 +92,14 @@ export default function Movies(props: MoviesProps) {
               </div>
               <Image
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`}
-                alt={`${movie.title} poster`}
+                alt={`Poster of ${movie.title}`}
                 width={120}
                 height={200}
               />
-            </div>
+            </article>
           );
         })}
-      </div>
+      </section>
       <PageControllers />
     </>
   );

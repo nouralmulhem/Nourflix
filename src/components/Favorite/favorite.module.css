@@ -4,6 +4,10 @@
   margin: 0 auto;
 }
 
+.moviesList {
+  list-style-type: none;
+}
+
 .movieItem {
   display: flex;
   align-items: center;
@@ -44,6 +48,10 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .pageTitle {

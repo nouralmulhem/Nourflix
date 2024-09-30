@@ -20,8 +20,19 @@ export default function Notification(props: NotificationProps) {
   }, [id, onClose]);
 
   return (
-    <div className={`${styles.notification} ${styles[type]}`}>
+    <div
+      className={`${styles.notification} ${styles[type]}`}
+      role="alert"
+      aria-live="assertive"
+    >
       <p>{message}</p>
+      <button
+        className={styles.closeButton}
+        onClick={() => onClose(id)}
+        aria-label="Close notification"
+      >
+        &times;
+      </button>
     </div>
   );
 }
