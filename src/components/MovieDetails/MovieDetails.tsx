@@ -1,24 +1,29 @@
 "use client";
 
-import { mock_movie } from "@/mock/movie";
-import { getMovieById } from "@/services/getMovieById";
-import { MovieDetailsType } from "@/utils/types";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import styles from "./movie.module.css";
-import Spinner from "../Spinner/Spinner";
-import EmptyState from "../EmptyState/EmptyState";
+
+// types
+import { MovieDetailsType } from "@/utils/types";
+
+// services
+import { getMovieById } from "@/services/getMovieById";
+
+// components
+import Spinner from "@/components/Spinner/Spinner";
+import EmptyState from "@/components/EmptyState/EmptyState";
+
+// store
 import { useNotificationStore } from "@/store/notification";
+
+// mock
+import { mock_movie } from "@/mock/movie";
 
 export default function MovieDetails({ id }: { id: string }) {
   const [movie, setMovie] = useState<MovieDetailsType | undefined>(undefined);
   const [failure, setFailure] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-
-  const handleAddNotification = () => {
-    const { addNotification } = useNotificationStore.getState();
-    addNotification("Error Fetching Movie", "error");
-  };
 
   const isFetchingRef = useRef(false);
 
@@ -30,9 +35,9 @@ export default function MovieDetails({ id }: { id: string }) {
       setLoading(true);
 
       try {
-        const response = await getMovieById<MovieDetailsType>(id);
-        setMovie(response);
-        // setMovie(mock_movie);
+        // const response = await getMovieById<MovieDetailsType>(id);
+        // setMovie(response);
+        setMovie(mock_movie);
       } catch {
         setFailure(true);
         handleAddNotification();
@@ -45,6 +50,11 @@ export default function MovieDetails({ id }: { id: string }) {
     fetchMovie();
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
   // I ignored the eslint warning here because I don't want to add setShowNotification to the dependency array (It doesn't make sense in real application
+
+  const handleAddNotification = () => {
+    const { addNotification } = useNotificationStore.getState();
+    addNotification("Error Fetching Movie", "error");
+  };
 
   if (loading) {
     return <Spinner />;

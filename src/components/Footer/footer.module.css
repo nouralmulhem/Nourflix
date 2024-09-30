@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   gap: 24px;
-  padding: 5px;
+  padding: 10px;
   justify-content: center;
   flex-wrap: wrap;
   position: fixed;

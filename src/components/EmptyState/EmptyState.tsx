@@ -11,7 +11,7 @@ export default function EmptyState(props: EmptyStateProps) {
   return (
     <div className={styles.emptyState}>
       <Image
-        src="/sad.png" // Store the image in the public folder
+        src="/sad.png"
         alt="Sad face"
         className={styles.image}
         width={60}

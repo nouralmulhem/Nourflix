@@ -1,27 +1,24 @@
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "./movies.module.css";
 
-import Image from "next/image";
+// types
 import { Movie } from "@/utils/types";
-import { useRouter } from "next/navigation";
-import { usePageStore } from "@/store";
-import { useEffect, useState } from "react";
+
+// utils
 import { toggleFavorite } from "@/utils/toggleFavorite";
-import { useNotificationStore } from "@/store/notification";
 
-export default function Movies({ movies }: { movies: Movie[] }) {
-  const setPage = usePageStore((state) => state.setPage);
-  const page = usePageStore((state) => state.page);
+// store
+import { useNotificationStore } from "@/store";
+import Link from "next/link";
+import PageControllers from "../PageControllers/PageControllers";
 
-  const router = useRouter();
+type MoviesProps = {
+  movies: Movie[];
+};
 
-  const handleAddNotification = (errMsg: string) => {
-    const { addNotification } = useNotificationStore.getState();
-    addNotification(errMsg, "error");
-  };
-
-  const handleClick = (id: number) => {
-    router.push(`/movie/${id}`);
-  };
+export default function Movies(props: MoviesProps) {
+  const { movies } = props;
 
   const [favorites, setFavorites] = useState<Movie[]>([]);
 
@@ -32,6 +29,11 @@ export default function Movies({ movies }: { movies: Movie[] }) {
     setFavorites(storedFavorites);
   }, []);
 
+  const handleAddNotification = (errMsg: string) => {
+    const { addNotification } = useNotificationStore.getState();
+    addNotification(errMsg, "success");
+  };
+
   return (
     <>
       <div className={styles.movieGrid}>
@@ -41,10 +43,10 @@ export default function Movies({ movies }: { movies: Movie[] }) {
           );
 
           return (
-            <div
+            <Link
+              href={`/movie/${movie.id}`}
               key={movie.id}
               className={styles.movieItem}
-              onClick={() => handleClick(movie.id)}
             >
               <div className={styles.overview}>
                 <div className={styles.info}>
@@ -80,26 +82,11 @@ export default function Movies({ movies }: { movies: Movie[] }) {
                 width={120}
                 height={200}
               />
-            </div>
+            </Link>
           );
         })}
       </div>
-      <div className={styles.ctas}>
-        <button
-          className={styles.secondary}
-          onClick={() => setPage(page - 1)}
-          disabled={page === 1}
-        >
-          Previous Page
-        </button>
-        <button
-          className={styles.primary}
-          onClick={() => setPage(page + 1)}
-          disabled={page === 20}
-        >
-          Next Page
-        </button>
-      </div>
+      <PageControllers />
     </>
   );
 }

@@ -2,36 +2,44 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./dashboard.module.css";
+
+// types
 import { Movie } from "@/utils/types";
 
 // mock data
 import { mock_movies } from "../../mock/movies";
 
 // store functions
-import { usePageStore, useQueryStore, useGenreStore } from "@/store";
-import Movies from "../Movies/Movies";
-import Spinner from "../Spinner/Spinner";
+import {
+  usePageStore,
+  useQueryStore,
+  useGenreStore,
+  useNotificationStore,
+} from "@/store";
 
-// endpoints
+// services
 import { getMovies } from "@/services";
-import EmptyState from "../EmptyState/EmptyState";
-import { useNotificationStore } from "@/store/notification";
+
+// components
+import EmptyState from "@/components/EmptyState/EmptyState";
+import Movies from "@/components/Movies/Movies";
+import Spinner from "@/components/Spinner/Spinner";
 
 export default function Dashboard() {
-  const genre = useGenreStore((state) => state.genre);
-  const query = useQueryStore((state) => state.query);
-  const page = usePageStore((state) => state.page);
-
   const [movies, setMovies] = useState<Movie[]>([]);
   const [failure, setFailure] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const isFetchingRef = useRef(false);
+
+  const genre = useGenreStore((state) => state.genre);
+  const query = useQueryStore((state) => state.query);
+  const page = usePageStore((state) => state.page);
 
   const handleAddNotification = () => {
     const { addNotification } = useNotificationStore.getState();
     addNotification("Error Fetching Movies", "error");
   };
-
-  const isFetchingRef = useRef(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -40,8 +48,9 @@ export default function Dashboard() {
       setLoading(true);
 
       try {
-        const response = await getMovies<Movie[]>(page, query, genre);
-        setMovies(response);
+        // const response = await getMovies<Movie[]>(page, query, genre);
+        // setMovies(response);
+        setMovies(mock_movies);
       } catch {
         setFailure(true);
         handleAddNotification();

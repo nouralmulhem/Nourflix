@@ -3,9 +3,21 @@
 import styles from "./header.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import SearchInput from "../SearchInput/SearchInput";
+
+// components
+import SearchInput from "@/components/SearchInput/SearchInput";
+
+// store
 import { useGenreStore } from "@/store/genre";
+
+// types
 import { Genre } from "@/utils/types";
+
+const genreMap: Record<Genre, string> = {
+  popular: "Popular",
+  top_rated: "Top Rated",
+  upcoming: "Upcoming",
+};
 
 export default function Header() {
   const genre = useGenreStore((state) => state.genre);
@@ -19,42 +31,34 @@ export default function Header() {
     setGenre(_genre);
   };
 
+  const renderGenres = () => {
+    return Object.keys(genreMap).map((key) => {
+      const typedKey = key as Genre; // Casting to the defined genre type
+
+      return (
+        <h4
+          key={typedKey}
+          className={isSelected(typedKey)}
+          onClick={() => handleClicked(typedKey)}
+        >
+          {genreMap[typedKey]}
+        </h4>
+      );
+    });
+  };
+
   return (
     <div className={styles.container}>
-      <Link href={"/"}>
-        <div className={styles.home}>
-          <Image src="/popcorn.png" alt="Logo" width={50} height={50} />
-          <h2>Nourflix</h2>
-        </div>
-      </Link>
+      <div className={styles.home}>
+        <Image src="/popcorn.png" alt="Logo" width={50} height={50} />
+        <h2>Nourflix</h2>
+      </div>
+
       <div className={styles.navigators}>
-        <div className={styles.genre}>
-          <h4
-            className={isSelected("popular")}
-            onClick={() => {
-              handleClicked("popular");
-            }}
-          >
-            Popular
-          </h4>
-          <h4
-            className={isSelected("top_rated")}
-            onClick={() => {
-              handleClicked("top_rated");
-            }}
-          >
-            Top Rated
-          </h4>
-          <h4
-            className={isSelected("upcoming")}
-            onClick={() => {
-              handleClicked("upcoming");
-            }}
-          >
-            Upcoming
-          </h4>
-        </div>
+        <div className={styles.genre}>{renderGenres()}</div>
+
         <Link href={"/favorite"}>Favorite List →</Link>
+
         <SearchInput />
       </div>
     </div>

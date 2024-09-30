@@ -25,14 +25,14 @@
 
 /* Poster image */
 .poster {
-  z-index: 2; /* Ensure poster stays above the overlay */
+  z-index: 2;
   border-radius: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6); /* Optional: Add shadow for emphasis */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 /* Movie details */
 .movieDetails {
   margin-top: 20px;
-  z-index: 2; /* Ensure text stays above the overlay */
+  z-index: 2;
   max-width: 50%;
 }
