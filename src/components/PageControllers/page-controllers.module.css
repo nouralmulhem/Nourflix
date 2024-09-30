@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   padding: 30px;
-  margin-bottom: 30px;
 }
 
 .ctas button {
@@ -52,10 +51,14 @@ button.secondary {
 }
 
 @media (max-width: 600px) {
+  .ctas {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+  }
   .ctas button {
     font-size: 14px;
     height: 40px;
-    padding: 0 16px;
   }
 
   .movieGrid {

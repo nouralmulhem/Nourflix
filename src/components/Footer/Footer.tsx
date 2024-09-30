@@ -4,6 +4,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className={styles.footer}>
+      <p>Nour Almulhem ©</p>
       <a
         href="https://www.linkedin.com/in/nour-almulhem-1817251b0/"
         target="_blank"

@@ -1,6 +1,6 @@
 .movieContainer {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 150px);
   color: #fff;
   display: flex;
   justify-content: center;
@@ -28,6 +28,14 @@
   z-index: 2;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+
+  position: relative;
+  width: 400px;
+  height: 600px;
+}
+
+.poster img {
+  border-radius: 2%;
 }
 
 /* Movie details */
@@ -35,4 +43,111 @@
   margin-top: 20px;
   z-index: 2;
   max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.movieDetails h1 {
+  font-size: 5rem;
+  font-weight: 900;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtitle h4 {
+  opacity: 0.5;
+}
+
+.rating {
+  display: flex;
+  gap: 10px;
+}
+
+.rating p {
+  opacity: 0.5;
+}
+
+.secondSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.secondSection > p {
+  color: #8b8b8b;
+}
+
+.subSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subSection p {
+  color: tomato;
+}
+
+.castContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.castMember img {
+  border-radius: 20%;
+}
+
+@media (max-width: 600px) {
+  .movieContainer {
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    padding-top: 20px;
+  }
+
+  .poster {
+    height: 450px;
+    width: 300px;
+  }
+
+  .movieDetails {
+    max-width: 90%;
+    gap: 50px;
+  }
+
+  .movieDetails h1 {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subtitle h4 {
+    font-size: 1rem;
+  }
+
+  .rating {
+    gap: 5px;
+  }
+
+  .secondSection {
+    gap: 30px;
+    font-size: 0.8rem;
+  }
+
+  .castContainer {
+    justify-content: center;
+    gap: 10px;
+  }
+  .poster img {
+    width: 100%;
+    height: auto;
+    border-radius: 2%;
+  }
 }

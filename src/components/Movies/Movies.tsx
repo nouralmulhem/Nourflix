@@ -13,6 +13,7 @@ import { useNotificationStore } from "@/store";
 import PageControllers from "../PageControllers/PageControllers";
 import { useRouter } from "next/navigation";
 import React from "react";
+import StarRating from "../StarRating/StarRating";
 
 type MoviesProps = {
   movies: Movie[];
@@ -59,9 +60,8 @@ export default function Movies(props: MoviesProps) {
             >
               <div className={styles.overview}>
                 <div className={styles.info}>
-                  <h2>{movie.title}</h2>
-                  <p>{movie.release_date}</p>
-                  <p>Rating: {movie.vote_average}</p>
+                  <h3 title={movie.title}>{movie.title}</h3>
+                  <StarRating rating={movie.vote_average} />
                 </div>
                 <div
                   aria-label={
@@ -90,12 +90,14 @@ export default function Movies(props: MoviesProps) {
                   />
                 </div>
               </div>
-              <Image
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`}
-                alt={`Poster of ${movie.title}`}
-                width={120}
-                height={200}
-              />
+              <div className={styles.poster}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`}
+                  alt={`Poster of ${movie.title}`}
+                  fill
+                />
+              </div>
+              <p>{movie.release_date.slice(0, 4)}</p>
             </article>
           );
         })}
