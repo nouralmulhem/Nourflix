@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import styles from "./movie.module.css";
 
@@ -8,25 +6,22 @@ import { MovieDetailsType } from "@/utils/types";
 
 // components
 import EmptyState from "@/components/EmptyState/EmptyState";
-
-import { useRouter } from "next/navigation";
-import NotificationContainer from "@/components/Notification/NotificationContainer";
+import CloseIcon from "@/components/CloseIcon/CloseIcon";
 
 type MovieDetailsProps = {
-  movie: MovieDetailsType;
+  movie: MovieDetailsType | undefined;
 };
 
 export default function MovieDetails(props: MovieDetailsProps) {
   const { movie } = props;
 
-  const router = useRouter();
-
-  const handleBackClick = () => {
-    router.back();
-  };
-
   if (!movie) {
-    return <EmptyState message="Movie not Found." />;
+    return (
+      <>
+        <CloseIcon />
+        <EmptyState message="Movie not Found." />
+      </>
+    );
   }
 
   const backdropUrl = `${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.backdrop_path}`;
@@ -34,18 +29,7 @@ export default function MovieDetails(props: MovieDetailsProps) {
 
   return (
     <>
-      <NotificationContainer />
-
-      <div onClick={handleBackClick}>
-        <Image
-          className={styles.closeIcon}
-          src={"/close-option.png"}
-          alt={"close-icon"}
-          width={50}
-          height={50}
-        />
-      </div>
-
+      <CloseIcon />
       <div
         className={styles.movieContainer}
         style={{

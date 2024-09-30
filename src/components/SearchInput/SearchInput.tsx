@@ -1,4 +1,3 @@
-"use client";
 import { KeyboardEvent } from "react";
 import styles from "./search.module.css";
 import { useQueryStore } from "@/store/query";

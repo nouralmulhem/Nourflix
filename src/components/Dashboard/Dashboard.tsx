@@ -48,9 +48,9 @@ export default function Dashboard() {
       setLoading(true);
 
       try {
-        // const response = await getMovies<Movie[]>(page, query, genre);
-        // setMovies(response);
-        setMovies(mock_movies);
+        const response = await getMovies<Movie[]>(page, query, genre);
+        setMovies(response);
+        // setMovies(mock_movies);
       } catch {
         setFailure(true);
         handleAddNotification();
@@ -62,7 +62,6 @@ export default function Dashboard() {
 
     fetchMovies();
   }, [page, query, genre]); // eslint-disable-line react-hooks/exhaustive-deps
-  // I ignored the eslint warning here because I don't want to add setShowNotification to the dependency array (It doesn't make sense in real application)
 
   if (loading) {
     return <Spinner />;
@@ -77,8 +76,10 @@ export default function Dashboard() {
   }
 
   return (
-    <div className={styles.container}>
-      <Movies movies={movies} />
-    </div>
+    <main className={styles.container} role="main">
+      <section aria-labelledby="dashboard-title">
+        <Movies movies={movies} />
+      </section>
+    </main>
   );
 }

@@ -39,20 +39,6 @@
   margin: 20px 0;
 }
 
-.closeIcon {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  cursor: pointer;
-  z-index: 2; /* Ensure icon stays above the overlay */
-  filter: invert();
-  opacity: 0.7;
-}
-
-.closeIcon:hover {
-  opacity: 1;
-}
-
 .favoriteIcon {
   flex-grow: 1;
   display: flex;
@@ -94,5 +80,22 @@
 
   .favoriteIcon {
     margin-top: 10px;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 0.5s forwards; /* Adjust duration as needed */
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(
+      50px
+    ); /* Adjust value for how far to the right it moves */
   }
 }

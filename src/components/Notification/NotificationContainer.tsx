@@ -1,3 +1,5 @@
+"use client";
+
 import { useNotificationStore } from "@/store/notification";
 import Notification from "./Notification";
 

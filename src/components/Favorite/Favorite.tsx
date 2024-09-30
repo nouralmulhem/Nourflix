@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation"; // For navigating to individual mov
 import { toggleFavorite } from "@/utils/toggleFavorite";
 import NotificationContainer from "@/components/Notification/NotificationContainer";
 import { useNotificationStore } from "@/store/notification";
+import { useState } from "react";
+import CloseIcon from "../CloseIcon/CloseIcon";
 
 type FavoriteProps = {
   favoriteMovies: Movie[];
@@ -16,14 +18,13 @@ type FavoriteProps = {
 export default function Favorite(props: FavoriteProps) {
   const { favoriteMovies, updateFavoriteMovies } = props;
 
+  // State to manage which movies are fading out
+  const [removingMovies, setRemovingMovies] = useState<number[]>([]);
+
   const router = useRouter();
 
   const handleMovieClick = (id: number) => {
     router.push(`/movie/${id}`);
-  };
-
-  const handleBackClick = () => {
-    router.back();
   };
 
   const handleAddNotification = (title: string) => {
@@ -31,17 +32,19 @@ export default function Favorite(props: FavoriteProps) {
     addNotification(`${title} has been removed from favorites`, "success");
   };
 
+  const handleRemoveMovie = (movie: Movie) => {
+    setRemovingMovies((prev) => [...prev, movie.id]); // Start fading out
+    setTimeout(() => {
+      toggleFavorite(favoriteMovies, movie, updateFavoriteMovies);
+      handleAddNotification(movie.title);
+      setRemovingMovies((prev) => prev.filter((id) => id !== movie.id)); // Remove from fading state
+    }, 500); // Match this duration with your fade-out CSS duration
+  };
+
   return (
     <>
-      <div onClick={handleBackClick}>
-        <Image
-          className={styles.closeIcon}
-          src={"/close-option.png"}
-          alt={`close-icon`}
-          width={50}
-          height={50}
-        />
-      </div>
+      <CloseIcon />
+
       <NotificationContainer />
 
       <div className={styles.favoriteMoviesContainer}>
@@ -53,7 +56,9 @@ export default function Favorite(props: FavoriteProps) {
           favoriteMovies.map((movie, index) => (
             <div key={movie.id}>
               <div
-                className={styles.movieItem}
+                className={`${styles.movieItem} ${
+                  removingMovies.includes(movie.id) ? styles.fadeOut : ""
+                }`}
                 onClick={() => handleMovieClick(movie.id)}
               >
                 <Image
@@ -70,8 +75,7 @@ export default function Favorite(props: FavoriteProps) {
                 <div
                   onClick={(e) => {
                     e.stopPropagation();
-                    toggleFavorite(favoriteMovies, movie, updateFavoriteMovies);
-                    handleAddNotification(movie.title);
+                    handleRemoveMovie(movie); // Update to use the new remove handler
                   }}
                   className={styles.favoriteIcon}
                 >
