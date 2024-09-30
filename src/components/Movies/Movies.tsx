@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./movies.module.css";
 
@@ -10,8 +10,8 @@ import { toggleFavorite } from "@/utils/toggleFavorite";
 
 // store
 import { useNotificationStore } from "@/store";
-import Link from "next/link";
 import PageControllers from "../PageControllers/PageControllers";
+import { useRouter } from "next/navigation";
 
 type MoviesProps = {
   movies: Movie[];
@@ -22,12 +22,18 @@ export default function Movies(props: MoviesProps) {
 
   const [favorites, setFavorites] = useState<Movie[]>([]);
 
+  const router = useRouter();
+
   useEffect(() => {
     const storedFavorites = JSON.parse(
       localStorage.getItem("favorites") || "[]"
     );
     setFavorites(storedFavorites);
   }, []);
+
+  const handleMovieClick = (id: number) => {
+    router.push(`/movie/${id}`);
+  };
 
   const handleAddNotification = (errMsg: string) => {
     const { addNotification } = useNotificationStore.getState();
@@ -43,10 +49,10 @@ export default function Movies(props: MoviesProps) {
           );
 
           return (
-            <Link
-              href={`/movie/${movie.id}`}
+            <div
               key={movie.id}
               className={styles.movieItem}
+              onClick={() => handleMovieClick(movie.id)}
             >
               <div className={styles.overview}>
                 <div className={styles.info}>
@@ -82,7 +88,7 @@ export default function Movies(props: MoviesProps) {
                 width={120}
                 height={200}
               />
-            </Link>
+            </div>
           );
         })}
       </div>

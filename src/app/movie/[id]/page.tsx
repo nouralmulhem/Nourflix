@@ -1,10 +1,7 @@
-"use client";
-
 import MovieDetails from "@/components/MovieDetails/MovieDetails";
 import styles from "./page.module.css";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import NotificationContainer from "@/components/Notification/NotificationContainer";
+import { getMovieById } from "@/services/getMovieById";
+import { MovieDetailsType } from "@/utils/types";
 
 interface PageProps {
   params: {
@@ -12,27 +9,12 @@ interface PageProps {
   };
 }
 
-export default function Page({ params }: PageProps) {
-  const router = useRouter();
-
-  const handleBackClick = () => {
-    router.back();
-  };
+export default async function Page({ params }: PageProps) {
+  const movie = await getMovieById<MovieDetailsType>(params.id);
 
   return (
     <div className={styles.page}>
-      <div onClick={handleBackClick}>
-        <Image
-          className={styles.closeIcon}
-          src={"/close-option.png"}
-          alt={"close-icon"}
-          width={50}
-          height={50}
-        />
-      </div>
-      <NotificationContainer />
-
-      <MovieDetails id={params.id} />
+      <MovieDetails movie={movie} />
     </div>
   );
 }
