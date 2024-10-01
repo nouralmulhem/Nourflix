@@ -22,8 +22,7 @@
 - <a href ="#features"> 🔍 Features</a>
 - <a href ="#contributors"> ✨ Contributors</a>
 - <a href ="#license"> 🔒 License</a>
-<!-- <hr style="background-color: #4b4c60"></hr> -->
-<br>
+<hr style="background-color: #4b4c60"></hr>
 
 ## <img align="center"  height =80px src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjBldmR0dHIybDV2dW45Z3E0YzdtOHNiNnNpcjVhc2JoYXV1d3llZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3ohzdG6mch98dP1JlK/giphy.gif"> Overview <a id = "about"></a>
 
@@ -51,8 +50,7 @@ You can view
 
 </li>
 </ul>
-<!-- <hr style="background-color: #4b4c60"></hr> -->
-<br>
+<hr style="background-color: #4b4c60"></hr>
 
 ## <img  align= center width=50px height=50px src="https://c.tenor.com/HgX89Yku5V4AAAAi/to-the-moon.gif"> Get Started <a id = "started"></a>
 
@@ -88,8 +86,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 </li>
 </ol>
-<!-- <hr style="background-color: #4b4c60"></hr> -->
-<br>
+<hr style="background-color: #4b4c60"></hr>
 
 ## <img  align= center width= 70px height =70px src="https://media1.giphy.com/media/NnSFnC428LRHaxUNzj/giphy.gif?cid=ecf05e47r1hlw9wrf1swakc9gxgn508lyzvbyzgp9i1iyvwl&rid=giphy.gif&ct=s"> Features <a id ="features"></a>
 
@@ -154,9 +151,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 </br>
 
 
-<!-- <hr style="background-color: #4b4c60"></hr> -->
-
-<br>
+<hr style="background-color: #4b4c60"></hr>
 
 ## <img  align="center" width= 70px height =55px src="https://media0.giphy.com/media/Xy702eMOiGGPzk4Zkd/giphy.gif?cid=ecf05e475vmf48k83bvzye3w2m2xl03iyem3tkuw2krpkb7k&rid=giphy.gif&ct=s"> Contributors <a id ="contributors"></a>
 
@@ -165,8 +160,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
      <td align="center"><a href="https://github.com/nouralmulhem"><img src="https://avatars.githubusercontent.com/u/76218033?v=4" width="150px;" alt=""/><br /><sub><b>Nour Ziad Almulhem</b></sub></a><br /></td>
   </tr>
 </table>
-
-<br>
 
 ## 🔒 License <a id ="license"></a>
 
