@@ -15,9 +15,9 @@ import { toggleFavorite } from "@/utils/toggleFavorite";
 import { useNotificationStore } from "@/store/notification";
 
 // components
-import CloseIcon from "@/components/CloseIcon/CloseIcon";
-import StarRating from "@/components/StarRating/StarRating";
-import EmptyState from "@/components/EmptyState/EmptyState";
+import CloseIcon from "@/design-system/CloseIcon/CloseIcon";
+import StarRating from "@/design-system/StarRating/StarRating";
+import EmptyState from "@/design-system/EmptyState/EmptyState";
 
 type FavoriteProps = {
   favoriteMovies: Movie[];
@@ -33,7 +33,7 @@ export default function Favorite(props: FavoriteProps) {
     router.push(`/movie/${id}`); // Navigate to the movie details page
   };
 
-  const handleAddNotification = (title: string) => {
+  const handleAddNotification = (title: string | undefined) => {
     const { addNotification } = useNotificationStore.getState();
     addNotification(`${title} has been removed from favorites`, "success"); // Show success notification on movie removal
   };
@@ -85,7 +85,7 @@ export default function Favorite(props: FavoriteProps) {
                   <div className={styles.rating}>
                     <StarRating rating={movie.vote_average} />
                     {"|"}
-                    <p>{movie.release_date.slice(0, 4)}</p>
+                    <p>{movie.release_date?.slice(0, 4)}</p>
                   </div>
                 </div>
                 <button

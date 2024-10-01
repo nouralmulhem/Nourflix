@@ -14,7 +14,7 @@ import { useNotificationStore } from "@/store";
 
 // components
 import PageControllers from "@/components/PageControllers/PageControllers";
-import StarRating from "@/components/StarRating/StarRating";
+import StarRating from "@/design-system/StarRating/StarRating";
 
 type MoviesProps = {
   movies: Movie[];

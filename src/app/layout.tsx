@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 const NotificationContainer = dynamic(
-  () => import("@/components/Notification/NotificationContainer")
+  () => import("@/widgets/Notification/NotificationContainer")
 );
 
 export default function RootLayout({

@@ -9,11 +9,13 @@ import { MovieData } from "@/utils/types";
 import { convertMinutesToHours } from "@/utils/convertToHours";
 
 // components
-import CloseIcon from "@/components/CloseIcon/CloseIcon";
-import StarRating from "@/components/StarRating/StarRating";
+import CloseIcon from "@/design-system/CloseIcon/CloseIcon";
+import StarRating from "@/design-system/StarRating/StarRating";
 import dynamic from "next/dynamic";
 
-const EmptyState = dynamic(() => import("@/components/EmptyState/EmptyState"));
+const EmptyState = dynamic(
+  () => import("@/design-system/EmptyState/EmptyState")
+);
 
 type MovieDetailsProps = {
   movie: MovieData | undefined;
