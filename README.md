@@ -78,7 +78,7 @@ bun install
 <br>
 
 ```bash
-bun dev
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -95,7 +95,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 <table align="left;">
 <tr>
 <th width=20%>Feature</th>
-<th width=40%>ScreenShot</th>
+<th width=50%>ScreenShot</th>
 <th>Description</th>
 </tr>
 
@@ -134,7 +134,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 <tr>
 <td>
-🔶 Favorite List Page
+🔶 Favorites Page
 </td>
 <td>
 
