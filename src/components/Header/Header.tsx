@@ -79,10 +79,10 @@ export default function Header() {
 
   return (
     <header className={styles.container}>
-      <div className={styles.home}>
+      <Link href={"/"} className={styles.home}>
         <Image src="/popcorn.png" alt="Nourflix logo" width={50} height={50} />
         <h2>Nourflix</h2>
-      </div>
+      </Link>
 
       <nav className={styles.navigators} aria-label="Main navigation">
         <div className={styles.genre}>{renderGenres()}</div>

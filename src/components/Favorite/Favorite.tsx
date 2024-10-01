@@ -6,10 +6,10 @@ import Image from "next/image";
 import { Movie } from "@/utils/types"; // Assuming you have a Movie type definition
 import { useRouter } from "next/navigation"; // For navigating to individual movie pages
 import { toggleFavorite } from "@/utils/toggleFavorite";
-import NotificationContainer from "@/components/Notification/NotificationContainer";
 import { useNotificationStore } from "@/store/notification";
 import { useState } from "react";
 import CloseIcon from "../CloseIcon/CloseIcon";
+import StarRating from "../StarRating/StarRating";
 
 type FavoriteProps = {
   favoriteMovies: Movie[];
@@ -43,8 +43,6 @@ export default function Favorite(props: FavoriteProps) {
     <>
       <CloseIcon />
 
-      <NotificationContainer />
-
       <section
         className={styles.favoriteMoviesContainer}
         aria-label="Favorite Movies Section"
@@ -74,7 +72,12 @@ export default function Favorite(props: FavoriteProps) {
                   />
                   <div className={styles.details}>
                     <h2>{movie.title}</h2>
-                    <p>{new Date(movie.release_date).getFullYear()}</p>
+                    <p>{movie.overview}</p>
+                    <div className={styles.rating}>
+                      <StarRating rating={movie.vote_average} />
+                      {"|"}
+                      <p>{movie.release_date.slice(0, 4)}</p>
+                    </div>
                   </div>
                   <button
                     onClick={(e) => {

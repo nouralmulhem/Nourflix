@@ -1,6 +1,6 @@
 .favoriteMoviesContainer {
   padding: 20px;
-  max-width: 800px;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -21,17 +21,30 @@
 }
 
 .details {
+  max-width: 80%;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.rating {
+  display: flex;
+  gap: 10px;
+}
+
+.rating p {
+  opacity: 0.9;
 }
 
 .details h2 {
   margin: 0;
   font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.details p {
-  margin: 5px 0 0;
+.details p:nth-child(2) {
   color: #666;
   font-size: 1rem;
 }
@@ -39,6 +52,7 @@
 .separator {
   border: none;
   height: 1px;
+  opacity: 0.3;
   background-color: #ddd;
   margin: 20px 0;
 }
@@ -57,15 +71,15 @@
 .pageTitle {
   font-size: 40px;
   font-weight: bold;
-  margin-bottom: 50px;
-  text-align: center;
+  margin: 30px auto;
 }
 
 @media (max-width: 600px) {
   .pageTitle {
+    text-align: center;
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin: 30px auto;
   }
 
   .details {
@@ -73,12 +87,13 @@
   }
 
   .favoriteMoviesContainer {
-    padding: 100px 50px;
+    padding: 70px 0;
   }
 
   .movieItem {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 
   .poster {

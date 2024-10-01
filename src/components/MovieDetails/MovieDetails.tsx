@@ -52,7 +52,7 @@ export default function MovieDetails(props: MovieDetailsProps) {
               <h4>{movie.tagline}</h4>
               <div className={styles.rating}>
                 <StarRating rating={movie.vote_average} />
-                {"/"}
+                {"|"}
                 <p>{movie.release_date.slice(0, 4)}</p>
               </div>
             </div>

@@ -2,7 +2,6 @@ import MovieDetails from "@/components/MovieDetails/MovieDetails";
 import styles from "./page.module.css";
 import { getMovieById } from "@/services/getMovieById";
 import { MovieDetailsType } from "@/utils/types";
-import NotificationContainer from "@/components/Notification/NotificationContainer";
 
 interface PageProps {
   params: {
@@ -15,8 +14,6 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className={styles.page}>
-      <NotificationContainer />
-
       <MovieDetails movie={movie} />
     </div>
   );

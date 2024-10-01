@@ -17,7 +17,7 @@ export default function CloseIcon() {
       className={styles.closeIcon}
       aria-label="Go back to the previous page"
     >
-      <Image src="/close-option.png" alt="Close icon" width={50} height={50} />
+      <Image src="/close.png" alt="Close icon" width={50} height={50} />
     </button>
   );
 }
