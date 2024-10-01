@@ -37,7 +37,6 @@ button.secondary {
   border-color: var(--gray-alpha-200);
 }
 
-/* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   button.primary:hover {
     background: var(--button-primary-hover);
@@ -62,7 +61,7 @@ button.secondary {
   }
 
   .movieGrid {
-    grid-template-columns: repeat(1, 1fr); /* Creates 4 equal columns */
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .ctas button {

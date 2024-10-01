@@ -107,7 +107,7 @@
 }
 
 .fadeOut {
-  animation: fadeOut 0.5s forwards; /* Adjust duration as needed */
+  animation: fadeOut 0.5s forwards;
 }
 
 @keyframes fadeOut {
@@ -117,8 +117,6 @@
   }
   100% {
     opacity: 0;
-    transform: translateX(
-      50px
-    ); /* Adjust value for how far to the right it moves */
+    transform: translateX(50px);
   }
 }

@@ -6,11 +6,13 @@ import React from "react";
 import { MovieDetailsType } from "@/utils/types";
 
 // components
-import EmptyState from "@/components/EmptyState/EmptyState";
 import CloseIcon from "@/components/CloseIcon/CloseIcon";
 import StarRating from "@/components/StarRating/StarRating";
 
 import { convertMinutesToHours } from "@/utils/convertToHours";
+import dynamic from "next/dynamic";
+
+const EmptyState = dynamic(() => import("@/components/EmptyState/EmptyState"));
 
 type MovieDetailsProps = {
   movie: MovieDetailsType | undefined;

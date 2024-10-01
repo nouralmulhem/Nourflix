@@ -21,9 +21,15 @@ import {
 import { getMovies } from "@/services";
 
 // components
-import EmptyState from "@/components/EmptyState/EmptyState";
+import dynamic from "next/dynamic";
 import Movies from "@/components/Movies/Movies";
-import Spinner from "@/components/Spinner/Spinner";
+
+const Spinner = dynamic(() => import("@/components/Spinner/Spinner"), {
+  ssr: false,
+});
+const EmptyState = dynamic(() => import("@/components/EmptyState/EmptyState"), {
+  ssr: false,
+});
 
 export default function Dashboard() {
   const [movies, setMovies] = useState<Movie[]>([]);

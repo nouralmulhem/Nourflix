@@ -1,7 +1,7 @@
-import MovieDetails from "@/components/MovieDetails/MovieDetails";
 import styles from "./page.module.css";
 import { getMovieById } from "@/services/getMovieById";
 import { MovieDetailsType } from "@/utils/types";
+import MovieDetails from "@/components/MovieDetails/MovieDetails";
 
 interface PageProps {
   params: {

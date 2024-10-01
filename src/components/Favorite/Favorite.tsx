@@ -10,6 +10,7 @@ import { useNotificationStore } from "@/store/notification";
 import { useState } from "react";
 import CloseIcon from "../CloseIcon/CloseIcon";
 import StarRating from "../StarRating/StarRating";
+import EmptyState from "../EmptyState/EmptyState";
 
 type FavoriteProps = {
   favoriteMovies: Movie[];
@@ -39,6 +40,10 @@ export default function Favorite(props: FavoriteProps) {
     }, 500); // CSS fade-out duration
   };
 
+  if (!favoriteMovies.length) {
+    return <EmptyState message="You have no favorite movies." />;
+  }
+
   return (
     <>
       <CloseIcon />
@@ -49,60 +54,56 @@ export default function Favorite(props: FavoriteProps) {
       >
         <h1 className={styles.pageTitle}>Your Favorite Movies</h1>
 
-        {favoriteMovies.length === 0 ? (
-          <p aria-live="polite">You have no favorite movies yet.</p>
-        ) : (
-          <ul aria-label="Favorite Movies List" className={styles.moviesList}>
-            {favoriteMovies.map((movie, index) => (
-              <li key={movie.id}>
-                <article
-                  className={`${styles.movieItem} ${
-                    removingMovies.includes(movie.id) ? styles.fadeOut : ""
-                  }`}
-                  role="button"
-                  aria-label={`View details for ${movie.title}`}
-                  onClick={() => handleMovieClick(movie.id)}
+        <ul aria-label="Favorite Movies List" className={styles.moviesList}>
+          {favoriteMovies.map((movie, index) => (
+            <li key={movie.id}>
+              <article
+                className={`${styles.movieItem} ${
+                  removingMovies.includes(movie.id) ? styles.fadeOut : ""
+                }`}
+                role="button"
+                aria-label={`View details for ${movie.title}`}
+                onClick={() => handleMovieClick(movie.id)}
+              >
+                <Image
+                  className={styles.poster}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`}
+                  alt={`${movie.title} poster`}
+                  width={100}
+                  height={150}
+                />
+                <div className={styles.details}>
+                  <h2>{movie.title}</h2>
+                  <p>{movie.overview}</p>
+                  <div className={styles.rating}>
+                    <StarRating rating={movie.vote_average} />
+                    {"|"}
+                    <p>{movie.release_date.slice(0, 4)}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemoveMovie(movie);
+                  }}
+                  className={styles.favoriteIcon}
+                  aria-label={`Remove ${movie.title} from favorites`}
                 >
                   <Image
-                    className={styles.poster}
-                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${movie.poster_path}`}
-                    alt={`${movie.title} poster`}
-                    width={100}
-                    height={150}
+                    className={`${styles.heart}${styles.favorite}`}
+                    src="/heart-full.png"
+                    alt="Remove from favorites"
+                    width={20}
+                    height={20}
                   />
-                  <div className={styles.details}>
-                    <h2>{movie.title}</h2>
-                    <p>{movie.overview}</p>
-                    <div className={styles.rating}>
-                      <StarRating rating={movie.vote_average} />
-                      {"|"}
-                      <p>{movie.release_date.slice(0, 4)}</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemoveMovie(movie);
-                    }}
-                    className={styles.favoriteIcon}
-                    aria-label={`Remove ${movie.title} from favorites`}
-                  >
-                    <Image
-                      className={`${styles.heart}${styles.favorite}`}
-                      src="/heart-full.png"
-                      alt="Remove from favorites"
-                      width={20}
-                      height={20}
-                    />
-                  </button>
-                </article>
-                {index < favoriteMovies.length - 1 && (
-                  <hr className={styles.separator} />
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
+                </button>
+              </article>
+              {index < favoriteMovies.length - 1 && (
+                <hr className={styles.separator} />
+              )}
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );
