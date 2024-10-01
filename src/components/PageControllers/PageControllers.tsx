@@ -20,7 +20,7 @@ export default function PageControllers() {
       <button
         className={styles.primary}
         onClick={() => setPage(page + 1)}
-        disabled={page === 20}
+        disabled={page === 20} // Disable the button if the page is the last page (MAX 20)
         aria-disabled={page === 20}
         aria-label="Go to the next page"
       >

@@ -100,7 +100,7 @@ export default function Movies(props: MoviesProps) {
                   fill
                 />
               </div>
-              <p>{movie.release_date.slice(0, 4)}</p>
+              <p>{movie.release_date?.slice(0, 4)}</p>
             </article>
           );
         })}
