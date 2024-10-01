@@ -154,7 +154,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 </br>
 
 
-<hr style="background-color: #4b4c60"></hr>
+<!-- <hr style="background-color: #4b4c60"></hr> -->
+
+<br>
 
 ## <img  align="center" width= 70px height =55px src="https://media0.giphy.com/media/Xy702eMOiGGPzk4Zkd/giphy.gif?cid=ecf05e475vmf48k83bvzye3w2m2xl03iyem3tkuw2krpkb7k&rid=giphy.gif&ct=s"> Contributors <a id ="contributors"></a>
 
@@ -163,6 +165,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
      <td align="center"><a href="https://github.com/nouralmulhem"><img src="https://avatars.githubusercontent.com/u/76218033?v=4" width="150px;" alt=""/><br /><sub><b>Nour Ziad Almulhem</b></sub></a><br /></td>
   </tr>
 </table>
+
+<br>
 
 ## 🔒 License <a id ="license"></a>
 
