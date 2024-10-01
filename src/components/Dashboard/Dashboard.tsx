@@ -6,9 +6,6 @@ import styles from "./dashboard.module.css";
 // types
 import { Movie } from "@/utils/types";
 
-// mock data
-import { mock_movies } from "../../mock/movies";
-
 // store functions
 import {
   usePageStore,
@@ -21,8 +18,8 @@ import {
 import { getMovies } from "@/services";
 
 // components
-import dynamic from "next/dynamic";
 import Movies from "@/components/Movies/Movies";
+import dynamic from "next/dynamic";
 
 const Spinner = dynamic(() => import("@/components/Spinner/Spinner"), {
   ssr: false,
@@ -44,7 +41,7 @@ export default function Dashboard() {
 
   const handleAddNotification = () => {
     const { addNotification } = useNotificationStore.getState();
-    addNotification("Error Fetching Movies", "error");
+    addNotification("Error Fetching Movies", "error"); // Show error notification on fetch failure
   };
 
   useEffect(() => {
@@ -54,9 +51,8 @@ export default function Dashboard() {
       setLoading(true);
 
       try {
-        // const response = await getMovies<Movie[]>(page, query, genre);
-        // setMovies(response);
-        setMovies(mock_movies);
+        const response = await getMovies<Movie[]>(page, query, genre);
+        setMovies(response);
       } catch {
         setFailure(true);
         handleAddNotification();
@@ -67,14 +63,14 @@ export default function Dashboard() {
     };
 
     fetchMovies();
-  }, [page, query, genre]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [page, query, genre]); // Refetch movies when page, query, or genre changes
 
   if (loading) {
-    return <Spinner />;
+    return <Spinner />; // Show loading spinner while fetching
   }
 
   if (failure) {
-    return <EmptyState message="Empty List." />;
+    return <EmptyState message="Empty List." />; // Show empty state if there's a failure
   }
 
   if (movies.length === 0) {

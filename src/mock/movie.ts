@@ -1,4 +1,6 @@
-export const mock_movie = {
+import { MovieData } from "@/utils/types";
+
+export const mock_movie: MovieData = {
   adult: false,
   backdrop_path: "/4TcpeInvAkxXlVWgoX9izD1cndY.jpg",
   belongs_to_collection: null,
@@ -16,49 +18,15 @@ export const mock_movie = {
   homepage: "https://www.itendswithus.movie",
   id: 1079091,
   imdb_id: "tt10655524",
-  origin_country: ["US"],
   original_language: "en",
   original_title: "It Ends with Us",
   overview:
     "When a woman's first love suddenly reenters her life, her relationship with a charming, but abusive neurosurgeon is upended, and she realizes she must learn to rely on her own strength to make an impossible choice for her future.",
   popularity: 1751.634,
   poster_path: "/cSMdFWmajaX4oUMLx7HEDI84GkP.jpg",
-  production_companies: [
-    {
-      id: 144610,
-      logo_path: "/879WnwsOH1oP6NlLY7ChD6vL6lh.png",
-      name: "Wayfarer Studios",
-      origin_country: "US",
-    },
-    {
-      id: 194285,
-      logo_path: null,
-      name: "Saks Picture Company",
-      origin_country: "US",
-    },
-    {
-      id: 5,
-      logo_path: "/71BqEFAF4V3qjjMPCpLuyJFB9A.png",
-      name: "Columbia Pictures",
-      origin_country: "US",
-    },
-  ],
-  production_countries: [
-    {
-      iso_3166_1: "US",
-      name: "United States of America",
-    },
-  ],
   release_date: "2024-08-07",
   revenue: 334836337,
   runtime: 131,
-  spoken_languages: [
-    {
-      english_name: "English",
-      iso_639_1: "en",
-      name: "English",
-    },
-  ],
   status: "Released",
   tagline: "We break the pattern or the pattern breaks us.",
   title: "It Ends with Us",

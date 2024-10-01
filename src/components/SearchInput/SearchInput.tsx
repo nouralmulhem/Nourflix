@@ -1,8 +1,10 @@
 import { KeyboardEvent } from "react";
 import styles from "./search.module.css";
+import { useRouter } from "next/navigation";
+
+// store
 import { useQueryStore } from "@/store/query";
 import { usePageStore } from "@/store/page";
-import { useRouter } from "next/navigation";
 
 export default function SearchInput() {
   const setQuery = useQueryStore((state) => state.setQuery);
@@ -13,8 +15,8 @@ export default function SearchInput() {
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       setQuery(event.currentTarget.value);
-      router.push("/");
-      setPage(1);
+      router.push("/"); // Navigate to the home page
+      setPage(1); // Reset page to 1
     }
   };
 

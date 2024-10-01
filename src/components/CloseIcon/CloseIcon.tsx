@@ -1,14 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import Image from "next/image";
 import styles from "./close-icon.module.css";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function CloseIcon() {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.back();
+    router.back(); // Navigate back to the previous page
   };
 
   return (

@@ -1,16 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./favorite.module.css";
 import Image from "next/image";
-import { Movie } from "@/utils/types"; // Assuming you have a Movie type definition
-import { useRouter } from "next/navigation"; // For navigating to individual movie pages
+import { useRouter } from "next/navigation";
+
+// types
+import { Movie } from "@/utils/types";
+
+// utils
 import { toggleFavorite } from "@/utils/toggleFavorite";
+
+// store
 import { useNotificationStore } from "@/store/notification";
-import { useState } from "react";
-import CloseIcon from "../CloseIcon/CloseIcon";
-import StarRating from "../StarRating/StarRating";
-import EmptyState from "../EmptyState/EmptyState";
+
+// components
+import CloseIcon from "@/components/CloseIcon/CloseIcon";
+import StarRating from "@/components/StarRating/StarRating";
+import EmptyState from "@/components/EmptyState/EmptyState";
 
 type FavoriteProps = {
   favoriteMovies: Movie[];
@@ -23,25 +30,25 @@ export default function Favorite(props: FavoriteProps) {
   const router = useRouter();
 
   const handleMovieClick = (id: number) => {
-    router.push(`/movie/${id}`);
+    router.push(`/movie/${id}`); // Navigate to the movie details page
   };
 
   const handleAddNotification = (title: string) => {
     const { addNotification } = useNotificationStore.getState();
-    addNotification(`${title} has been removed from favorites`, "success");
+    addNotification(`${title} has been removed from favorites`, "success"); // Show success notification on movie removal
   };
 
   const handleRemoveMovie = (movie: Movie) => {
-    setRemovingMovies((prev) => [...prev, movie.id]);
+    setRemovingMovies((prev) => [...prev, movie.id]); // Mark the movie as being removed
     setTimeout(() => {
-      toggleFavorite(favoriteMovies, movie, updateFavoriteMovies);
+      toggleFavorite(favoriteMovies, movie, updateFavoriteMovies); // toggle the favorite status
       handleAddNotification(movie.title);
-      setRemovingMovies((prev) => prev.filter((id) => id !== movie.id));
-    }, 500); // CSS fade-out duration
+      setRemovingMovies((prev) => prev.filter((id) => id !== movie.id)); // remove movie from removing state
+    }, 500);
   };
 
   if (!favoriteMovies.length) {
-    return <EmptyState message="You have no favorite movies." />;
+    return <EmptyState message="You have no favorite movies." />; // show empty state if there are no favorite movies
   }
 
   return (

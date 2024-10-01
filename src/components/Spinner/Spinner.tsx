@@ -4,6 +4,7 @@ export default function Spinner() {
   return (
     <div className={styles.container} role="alert" aria-live="assertive">
       <div className={styles.spinner} aria-busy="true" aria-label="Loading">
+        {/* add the following divs to create the spinner effect */}
         <div className={styles.doubleBounce1}></div>
         <div className={styles.doubleBounce2}></div>
       </div>

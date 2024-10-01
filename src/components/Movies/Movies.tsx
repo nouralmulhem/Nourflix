@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./movies.module.css";
+import { useRouter } from "next/navigation";
 
 // types
 import { Movie } from "@/utils/types";
@@ -10,10 +11,10 @@ import { toggleFavorite } from "@/utils/toggleFavorite";
 
 // store
 import { useNotificationStore } from "@/store";
-import PageControllers from "../PageControllers/PageControllers";
-import { useRouter } from "next/navigation";
-import React from "react";
-import StarRating from "../StarRating/StarRating";
+
+// components
+import PageControllers from "@/components/PageControllers/PageControllers";
+import StarRating from "@/components/StarRating/StarRating";
 
 type MoviesProps = {
   movies: Movie[];
@@ -27,6 +28,7 @@ export default function Movies(props: MoviesProps) {
   const router = useRouter();
 
   useEffect(() => {
+    // Load favorites from local storage on component mount
     const storedFavorites = JSON.parse(
       localStorage.getItem("favorites") || "[]"
     );
@@ -34,6 +36,7 @@ export default function Movies(props: MoviesProps) {
   }, []);
 
   const handleMovieClick = (id: number) => {
+    // Navigate to movie details page
     router.push(`/movie/${id}`);
   };
 
@@ -47,7 +50,7 @@ export default function Movies(props: MoviesProps) {
       <section className={styles.movieGrid} role="list">
         {movies.map((movie) => {
           const isFavorite = favorites.some(
-            (favMovie) => favMovie.id === movie.id
+            (favMovie) => favMovie.id === movie.id // Check if movie is in favorites
           );
 
           return (
@@ -70,12 +73,12 @@ export default function Movies(props: MoviesProps) {
                       : `Add ${movie.title} to favorites`
                   }
                   onClick={(e) => {
-                    e.stopPropagation();
+                    e.stopPropagation(); // Prevent event from bubbling up
                     toggleFavorite(favorites, movie, setFavorites);
                     handleAddNotification(
                       isFavorite
-                        ? "Removed from Favorites"
-                        : "Added to Favorites"
+                        ? "Removed from Favorites" // notification for removal
+                        : "Added to Favorites" // notification for addition
                     );
                   }}
                 >
@@ -102,7 +105,7 @@ export default function Movies(props: MoviesProps) {
           );
         })}
       </section>
-      <PageControllers />
+      <PageControllers /> {/* Pagination controls */}
     </>
   );
 }

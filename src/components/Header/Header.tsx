@@ -3,6 +3,7 @@
 import styles from "./header.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // components
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -13,8 +14,6 @@ import { useGenreStore } from "@/store/genre";
 // types
 import { Genre } from "@/utils/types";
 
-import { useRouter } from "next/navigation";
-
 const genreMap: Record<Genre, string> = {
   popular: "Popular",
   top_rated: "Top Rated",
@@ -22,16 +21,16 @@ const genreMap: Record<Genre, string> = {
 };
 
 export default function Header() {
-  const genre = useGenreStore((state) => state.genre);
-  const setGenre = useGenreStore((state) => state.setGenre);
+  const genre = useGenreStore((state) => state.genre); // get genre from store
+  const setGenre = useGenreStore((state) => state.setGenre); // update genre in store
   const router = useRouter();
 
   const isSelected = (_genre: Genre) => {
-    return genre === _genre ? styles.selected : "";
+    return genre === _genre ? styles.selected : ""; // highlight selected genre
   };
 
   const handleClicked = (_genre: Genre) => {
-    router.push("/");
+    router.push("/"); // navigate to home page
     setGenre(_genre);
   };
 
@@ -43,7 +42,7 @@ export default function Header() {
         <h4
           key={typedKey}
           className={isSelected(typedKey)}
-          onClick={() => handleClicked(typedKey)}
+          onClick={() => handleClicked(typedKey)} // Update genre on click
           aria-label={`View ${genreMap[typedKey]} movies`}
         >
           {genreMap[typedKey]}
@@ -64,7 +63,7 @@ export default function Header() {
 
             return (
               <a
-                onClick={() => handleClicked(typedKey)}
+                onClick={() => handleClicked(typedKey)} // Update genre on click
                 data-genre={typedKey}
                 key={typedKey}
               >
@@ -85,9 +84,10 @@ export default function Header() {
       </Link>
 
       <nav className={styles.navigators} aria-label="Main navigation">
-        <div className={styles.genre}>{renderGenres()}</div>
-        <div className={styles.genreMobile}>{renderGenresForMobile()}</div>
-
+        <div className={styles.genre}>{renderGenres()}</div>{" "}
+        {/* render genres for desktop */}
+        <div className={styles.genreMobile}>{renderGenresForMobile()}</div>{" "}
+        {/* render genres for mobile */}
         <Link
           className={styles.favoriteContainer}
           href="/favorite"
@@ -101,7 +101,6 @@ export default function Header() {
             height={15}
           />
         </Link>
-
         <SearchInput aria-label="Search for movies" />
       </nav>
     </header>

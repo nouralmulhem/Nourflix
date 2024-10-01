@@ -3,19 +3,20 @@ import styles from "./movie.module.css";
 import React from "react";
 
 // types
-import { MovieDetailsType } from "@/utils/types";
+import { MovieData } from "@/utils/types";
+
+// utils
+import { convertMinutesToHours } from "@/utils/convertToHours";
 
 // components
 import CloseIcon from "@/components/CloseIcon/CloseIcon";
 import StarRating from "@/components/StarRating/StarRating";
-
-import { convertMinutesToHours } from "@/utils/convertToHours";
 import dynamic from "next/dynamic";
 
 const EmptyState = dynamic(() => import("@/components/EmptyState/EmptyState"));
 
 type MovieDetailsProps = {
-  movie: MovieDetailsType | undefined;
+  movie: MovieData | undefined;
 };
 
 export default function MovieDetails(props: MovieDetailsProps) {
@@ -25,7 +26,8 @@ export default function MovieDetails(props: MovieDetailsProps) {
     return (
       <>
         <CloseIcon />
-        <EmptyState message="Movie not found." />
+        <EmptyState message="Movie not found." />{" "}
+        {/* Show empty state if movie is undefined */}
       </>
     );
   }
@@ -70,7 +72,8 @@ export default function MovieDetails(props: MovieDetailsProps) {
                   {movie.genres
                     .slice(0, 2)
                     .map((e) => e.name)
-                    .join(", ")}
+                    .join(", ")}{" "}
+                  {/* Display first two genres */}
                 </p>
               </div>
 
@@ -83,7 +86,8 @@ export default function MovieDetails(props: MovieDetailsProps) {
                 <h3>Director:</h3>
                 <p>
                   {movie.credits?.crew?.filter((e) => e.job === "Director")[0]
-                    ?.name || "Unknown"}
+                    ?.name || "Unknown"}{" "}
+                  {/* Display director's name or "Unknown" */}
                 </p>
               </div>
             </section>
@@ -101,6 +105,7 @@ export default function MovieDetails(props: MovieDetailsProps) {
                   />
                 </div>
               ))}
+              {/* Display first 10 cast members */}
             </div>
           </section>
         </section>

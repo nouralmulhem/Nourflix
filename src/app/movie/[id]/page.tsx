@@ -1,16 +1,22 @@
 import styles from "./page.module.css";
-import { getMovieById } from "@/services/getMovieById";
-import { MovieDetailsType } from "@/utils/types";
+
+// services
+import { getMovieById } from "@/services";
+
+// types
+import { MovieData } from "@/utils/types";
+
+// components
 import MovieDetails from "@/components/MovieDetails/MovieDetails";
 
 interface PageProps {
   params: {
-    id: string;
+    id: string; // Movie ID passed through the route params
   };
 }
 
 export default async function Page({ params }: PageProps) {
-  const movie = await getMovieById<MovieDetailsType | undefined>(params.id);
+  const movie = await getMovieById<MovieData | undefined>(params.id);
 
   return (
     <div className={styles.page}>

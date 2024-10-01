@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import styles from "./notification.module.css";
 
 type NotificationProps = {
-  id: number; // Unique ID for the notification
+  id: number; 
   message: string;
   type: "success" | "error";
-  onClose: (id: number) => void; // Function to close the notification
+  onClose: (id: number) => void; 
 };
 
 export default function Notification(props: NotificationProps) {

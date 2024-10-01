@@ -1,7 +1,5 @@
 import { Movie } from "./types";
 
-// we also can store this list in zustand store and that will be efficient
-// but for the sake of change, we will use local storage
 export const toggleFavorite = (
   favorites: Movie[],
   movie: Movie,
@@ -9,7 +7,7 @@ export const toggleFavorite = (
 ) => {
   let updatedFavorites;
 
-  const isFavorite = favorites.some((favMovie) => favMovie.id === movie.id);
+  const isFavorite = favorites.some((favMovie) => favMovie.id === movie.id); // Check if the movie is already in favorites
 
   if (isFavorite) {
     updatedFavorites = favorites.filter((favMovie) => favMovie.id !== movie.id);
@@ -18,5 +16,5 @@ export const toggleFavorite = (
   }
 
   setFavorites(updatedFavorites);
-  localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  localStorage.setItem("favorites", JSON.stringify(updatedFavorites)); // Update the local storage with the updated favorites
 };

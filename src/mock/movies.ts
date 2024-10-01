@@ -1,4 +1,6 @@
-export const mock_movies = [
+import { Movie } from "@/utils/types";
+
+export const mock_movies: Movie[] = [
   {
     adult: false,
     backdrop_path: "/Asg2UUwipAdE87MxtJy7SQo08XI.jpg",
