@@ -14,10 +14,5 @@
 
 .image {
   object-fit: contain;
-}
-
-@media (prefers-color-scheme: dark) {
-  .image {
-    filter: invert();
-  }
+  filter: invert();
 }

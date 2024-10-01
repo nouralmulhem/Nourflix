@@ -48,25 +48,6 @@
   display: none;
 }
 
-@media (max-width: 600px) {
-  .container {
-    padding: 30px;
-  }
-
-  .home,
-  .genre {
-    display: none;
-  }
-
-  .genreMobile {
-    display: flex;
-  }
-
-  .navigators {
-    margin: auto;
-  }
-}
-
 .genreContainer {
   position: relative;
   display: inline-block;
@@ -98,4 +79,23 @@
 
 .genreContainer:hover .ddl {
   display: block;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 30px;
+  }
+
+  .home,
+  .genre {
+    display: none;
+  }
+
+  .genreMobile {
+    display: flex;
+  }
+
+  .navigators {
+    margin: auto;
+  }
 }
